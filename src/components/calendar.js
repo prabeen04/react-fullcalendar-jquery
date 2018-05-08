@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import 'fullcalendar/dist/fullcalendar.css';
-import 'fullcalendar/dist/fullcalendar.print.min.css';
+// import 'fullcalendar/dist/fullcalendar.print.min.css';
 import 'fullcalendar/dist/fullcalendar.js';
 
 class Calendar extends Component {
   constructor(props){
     super(props)
-    this.calendarRef = React.createRef();
+    // this.calendarRef = React.createRef();
     this.renderEvents = this.renderEvents.bind(this);
   }
   renderEvents = () => {
@@ -16,14 +16,23 @@ class Calendar extends Component {
     })
   }
   componentDidMount(){
-    $(this.calendarRef).fullCalendar()
+    // this.$node = $(this.calendarRef);
+    $(this.el).fullCalendar({
+      header:{
+        left:   'month,week,day,agenda',
+        center: 'title',
+        right:  'today prev,next'
+      },
+      selectable: true,
+      events: this.props.events
+    })
   }
   render() {
     console.log(this.calendarRef)
     return (
       <div>
         <h2>Calendar</h2>
-        <div ref={this.calendarRef}></div>
+        <div ref={el => this.el = el}></div>
         {/* {this.renderEvents()} */}
       </div>
     )
