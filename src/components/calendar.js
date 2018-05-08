@@ -31,8 +31,7 @@ class Calendar extends Component {
     console.log(this.calendarRef)
     return (
       <div>
-        <h2>Calendar</h2>
-        <div ref={el => this.el = el}></div>
+        <div ref={el => this.el = el} style={{height: '600px'}}></div>
         {/* {this.renderEvents()} */}
       </div>
     )
