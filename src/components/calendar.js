@@ -8,15 +8,15 @@ class Calendar extends Component {
   constructor(props){
     super(props)
     // this.calendarRef = React.createRef();
-    this.renderEvents = this.renderEvents.bind(this);
+    this.updateEvents = this.updateEvents.bind(this);
   }
-  renderEvents = () => {
+  updateEvents = () => {
     return this.props.events.map((event, index)=>{
         return <p key={index}>{event.title}</p>
     })
   }
-  componentDidMount(){
-    // this.$node = $(this.calendarRef);
+  updateEvents = () => {
+    console.log(this.props.events)
     $(this.el).fullCalendar({
       header:{
         left:   'month,week,day,agenda',
@@ -24,14 +24,20 @@ class Calendar extends Component {
         right:  'today prev,next'
       },
       selectable: true,
+      height: 550,
       events: this.props.events
     })
   }
+  componentDidMount() {
+    this.updateEvents(this.props.events);
+  }
+  componentDidUpdate() {
+    this.updateEvents(this.props.events);
+  }
   render() {
-    console.log(this.calendarRef)
     return (
       <div>
-        <div ref={el => this.el = el} style={{height: '600px'}}></div>
+        <div ref={el => this.el = el}></div>
         {/* {this.renderEvents()} */}
       </div>
     )

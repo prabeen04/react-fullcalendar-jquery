@@ -32,7 +32,7 @@ class CalendarWrapper extends Component {
     }
     render() {
         return (
-            <div style={{backgroundColor: '#fff', margin: '1.5rem', padding: '1rem', height: '600px'}}>
+            <div style={{backgroundColor: '#fff', margin: '1.5rem', padding: '1rem'}}>
                 <Calendar events={this.state.events}/>
                 <CalendarForm />
             </div>
