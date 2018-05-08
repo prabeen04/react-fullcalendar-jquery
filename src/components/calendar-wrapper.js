@@ -5,13 +5,29 @@ import axios from 'axios';
 const baseUrl = 'https://prabeen-restapi.herokuapp.com/api/events';
 
 class CalendarWrapper extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            events: [],
+            isFetching: false,
+            isError: false
+        }
+    }
+
     componentDidMount() {
         axios.get(baseUrl)
             .then((res) => {
-                console.log(res.data)
+                this.setState({
+                    events: res.data,
+                    isFetching: false
+                })
             })
             .catch((err) => {
-                console.log(err)
+                this.setState({
+                    isError: true,
+                    isFetching: false
+                })
             })
     }
     render() {
