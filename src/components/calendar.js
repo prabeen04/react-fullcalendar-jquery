@@ -15,8 +15,9 @@ class Calendar extends Component {
         return <p key={index}>{event.title}</p>
     })
   }
-  updateEvents = () => {
+  updateEvents = (eventsList) => {
     console.log(this.props.events)
+    $(this.el).fullCalendar('destroy')
     $(this.el).fullCalendar({
       header:{
         left:   'month,week,day,agenda',
@@ -25,7 +26,7 @@ class Calendar extends Component {
       },
       selectable: true,
       height: 550,
-      events: this.props.events
+      events: eventsList
     })
   }
   componentDidMount() {
@@ -33,6 +34,9 @@ class Calendar extends Component {
   }
   componentDidUpdate() {
     this.updateEvents(this.props.events);
+  }
+  componentWillUnmount(){
+    $(this.el).fullCalendar('destroy')
   }
   render() {
     return (
