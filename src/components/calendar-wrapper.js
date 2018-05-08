@@ -33,8 +33,7 @@ class CalendarWrapper extends Component {
     render() {
         return (
             <div>
-                <h1>Fullcalendar goes here</h1>
-                <Calendar />
+                <Calendar events={this.state.events}/>
                 <CalendarForm />
             </div>
         )
